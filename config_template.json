@@ -1,0 +1,24 @@
+{
+    "log_dir": ".",
+    "log_level": "DEBUG",
+    "sites": [
+        {
+            "name": "Example Config",
+            "description": "This is a sample description of what this config entry is checking.",
+            "target_uri": "http://example.com",
+            "negative_test_regex": "example",
+            "positive_test_regex": "slartibartfast",
+            "command_on_fail": [
+                "date",
+                "-u"
+            ],
+            "seconds_between_retest": 100,
+            "mailgun_config": {
+                "api_key": "",
+                "target_emails": [
+                    "example@example.com"
+                ]
+            }
+        }
+    ]
+}
