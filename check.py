@@ -46,19 +46,21 @@ for i in config["sites"]:
         rbytes = response.read()
         html = rbytes.decode("utf8")
 
-    pos = i["positive_test_regex"]
-    logging.debug(f"Ensuring positive test is found: {pos}")
-    pmatches = re.findall(pos, html)
-    if len(pmatches) == 0:
-        logging.warning(f"Positive test regex did not match page html.")
-        fail_bit = True
+    pos = i.get("positive_test_regex")
+    if pos is not None:
+        logging.debug(f"Ensuring positive test is found: {pos}")
+        pmatches = re.findall(pos, html)
+        if len(pmatches) == 0:
+            logging.warning(f"Positive test regex did not match page html.")
+            fail_bit = True
 
-    neg = i["negative_test_regex"]
-    logging.debug(f"Ensuring negative test is not found: {neg}")
-    nmatches = re.findall(neg, html)
-    if len(nmatches) > 0:
-        logging.warning(f"Negative test regex matched page html.")
-        fail_bit = True
+    neg = i.get("negative_test_regex")
+    if neg is not None:
+        logging.debug(f"Ensuring negative test is not found: {neg}")
+        nmatches = re.findall(neg, html)
+        if len(nmatches) > 0:
+            logging.warning(f"Negative test regex matched page html.")
+            fail_bit = True
 
     if fail_bit is True:
         fcommand = i["command_on_fail"]
