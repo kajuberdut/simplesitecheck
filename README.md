@@ -29,43 +29,16 @@ The root object can also contain a 'log_dir' and 'log_level'.
             "name": "Example Config",
             "description": "This is a sample description of what this config entry is checking.",
             "target_uri": "http://example.com",
-            "negative_test_regex": "example",
-            "positive_test_regex": "slartibartfast",
+            "test_type": "positive"
+            "regex": "example",
             "command_on_fail": [
                 "date",
                 "-u"
             ],
-            "seconds_between_retest": 100,
-            "mailgun_config": {
-                "api_key": "",
-                "target_emails": [
-                    "example@example.com"
-                ]
-            }
         }
     ]
 }
 ```
-
-### Site level configuration elements
-#### site: name
-A name for this site congiguration, this is only used for logging.
-
-#### site: description
-A simple description of what you are chekcing for to be kind to your future self. This is not used by the script.
-
-#### site: target_uri
-The uri to be checked
-
-#### site: negative_test_regex
-The check will be considered failing if this regex DOES match on the page.
-
-#### site: positive_test_regex
-The check will be considered failing if this regex DOES NOT match on the page.
-
-#### site: command_on_fail
-A single string or an array of strings which will be passed to Python's subprocess.call if the test fails.
-
 
 ### Top level configuration elements
 #### log directory
@@ -73,3 +46,28 @@ This should be a valid absolute path where the log file should be created or app
 
 #### log level
 simplesitecheck follows [Python's log level convention](https://docs.python.org/3/library/logging.html#levels).
+
+### Site level configuration elements
+#### name
+A name for this site congiguration, this is only used for logging.
+
+#### description
+A simple description of what you are chekcing for to be kind to your future self. This is not used by the script.
+
+#### target_uri
+The uri to be checked
+
+#### test_type
+Valid values are "positive" or "negative".
+##### positive
+The check fails if the regex DOES NOT match the page.
+##### negative
+The check fails if this regex DOES match on the page.
+
+#### regex
+The regex to be looked for in the page HTML.
+
+#### command_on_fail
+A single string or an array of strings which will be passed to Python's subprocess.call if the check fails.
+
+
