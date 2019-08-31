@@ -10,7 +10,7 @@ From any directory containing check.py and a config.json run with:
 python check.py
 ```
 
-This will run once, executing each site setup in your config file. See [configuration]() for setting up config.json
+This will run once, executing each site setup in your config file. See [configuration](https://github.com/kajuberdut/simplesitecheck/blob/master/README.md#configuration) for setting up config.json
 
 In a production environment running once is not that helpful, in this case it would be best to [setup a cron job](https://lifehacker.com/learn-to-use-cron-from-the-command-line-399503) that runs at an interval of your chosing.
 
@@ -29,7 +29,7 @@ The root object can also contain a 'log_dir' and 'log_level'.
             "name": "Example Config",
             "description": "This is a sample description of what this config entry is checking.",
             "target_uri": "http://example.com",
-            "test_type": "positive"
+            "test_type": "positive",
             "regex": "example",
             "command_on_fail": [
                 "date",
