@@ -28,7 +28,9 @@ except FileNotFoundError:
 log_file = pathlib.Path(config["log_dir"]) / "log.txt"
 log_level = log_levels[config.get("log_level", "DEBUG").upper()]
 logging.basicConfig(
-    filename=log_file, level=log_level, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+    filename=log_file,
+    level=log_level,
+    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
 )
 
 for i in config["sites"]:
